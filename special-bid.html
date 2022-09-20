@@ -1,0 +1,196 @@
+{% extends "website/base.html" %}
+{% load staticfiles %}
+{% load humanize %}
+{% block extra_style %}
+
+
+
+<link rel="stylesheet" href="{% static "dist/css/base.034af34b.css" %}">
+<link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/sweetalert2@9.15.2/dist/sweetalert2.min.css">
+
+
+
+{% endblock %}
+
+{% block content %}
+
+<!-- Current Auctions-->
+<section class="section section-lg bg-white-100" id="current_auction" style="margin-top: 2%;">
+  <!-- <div class="container"> -->
+  <h2 class="text-center" style="color: #292a2d;font-weight: bold;">{{product_name}}<span
+      style="color:#f44336;font-weight: bolder;"> Rush!</span></h2>
+
+  <div class="row col-12 col-xl-10 mx-0 px-0 mx-auto flex-wrap" style="overflow: hidden;">
+
+    {% for bid in bids %}
+
+    <div class="col-12 col-xl-4 col-lg-4 col-md-6 col-sm-6">
+      <div  style="border-bottom: 5px solid #d2d6dc;" class="bg-white p-3 mb-2">
+
+          <div class="row mx-0 flex-wrap">
+            <div class="col-12 px-0 xpt-3">
+                <a class="heading-5" href="#">{{bid.product.name}} 
+            </div>
+            <div class="col-12 px-0">
+              <span class="w-100" style="font-size: 15px;color: #0e9f6e;">RRP: KES {{bid.product.price|intcomma}}</span></a>
+            </div>
+          </div>
+
+          <p><strong>{{bid.product.description}}</strong></p>
+
+            <figure class="" style="padding: 1px;">
+
+              <img src="{{bid.product.image.url}}" alt="" width="100%" height="auto" />
+            </figure>
+
+            <div style="margin-top:2%;padding:2px; margin-bottom: 2%;">
+              Product Code: <strong>{{bid.code}}</strong>
+            </div>
+
+
+            <!-- Countdown-->
+
+            <div style="border-top: 1px solid #d2d6dc; margin-top:2%;padding:2px;">
+
+              <p style="color: #161e2e;">Ends In: <strong><span id="{{bid.code}}" class="counter_t"
+                    data-closes_at="{{bid.closes_at}}" style="color: red;" onload="get_timer()">{{bid.ends_in}}</span>
+                </strong>
+              </p>
+
+            </div>
+
+            <!--End countdown-->
+            <!--Play via mpesa-->
+
+
+
+            <div style="border-top: 1px solid #d2d6dc; border-bottom: 1px solid #d2d6dc;margin-top:2%;padding:2px;">
+
+              <h5>Bid via Mpesa</h5>
+              <p style="color: #161e2e;">
+
+                Send just KES <strong>{{bid.ticket_price}}</strong> to PB <strong>5265353</strong> with
+                <strong>{{bid.code}}</strong> and your bid amount as the account name.
+
+              </p>
+              <p class="" style=""> Example: <strong>{{bid.code}} 120</strong> to bid KES 120</p>
+
+
+
+
+              <!--Play via mpesa-->
+
+              <p style="color: #161e2e;">Or you can <strong class="text-black">Play Online</strong></p>
+
+              <p class="" style="color: #161e2e;">Grab your phone and get ready to pay KES {{bid.ticket_price}}.</p><br>
+
+
+              <form method="post" name="bid_form" action="/ipn/checkout/">
+                <input type="hidden" name="bid_code" value="{{bid.code}}">
+                <input type="text" class="form-group form-control" placeholder="Your phone Number"
+                  id="{{bid.code}}_phone_number" name="phone_number" >
+                <p style="color: red; display: none; font-size: 14px; text-decoration: wavy;"
+                  id="{{bid.code}}_phone_error"></p>
+                <input type="number" class="form-group form-control" placeholder="Bid Amount e.g 43"
+                  id="{{bid.code}}_bid_value" name="bid_value">
+                <p style="color: red; display: none; font-size: 14px; text-decoration: wavy;"
+                  id="{{bid.code}}_bid_value_error"></p>
+                <button type="submit" id="{{bid.code}}" data-code={{bid.code}}
+                  class="bid-btn button button-icon button-icon-right form-group form-control"
+                  style="background-color: #f44336;border-color:#f44336;color: white;"><span
+                    class="icon novi-icon"></span>Place your Bid</button>
+            </form>
+          </div>
+      </div>
+    </div>
+    {% endfor %}
+
+  </div>
+</section>
+
+<!-- Finished Auctions-->
+<section class="section section-lg bg-white d-none" style="padding-top: 20px;">
+  <div class="container">
+    <!-- <h2 class="text-center" style="color: #292a2d;font-weight: bold;">Finished<span style="color:#f44336;font-weight: bolder;"> Auctions</span></h2>
+          
+            
+          <table id="winners_table" class="table table-responsive bg-white table-striped" style="margin-top: 2%;">
+
+               
+            <thead>
+            <tr>
+              <th>AUCTION</th>
+              <th></th>
+              <th>BIDDER</th>
+              <th>RRP</th>
+              <th>WINNING BID</th>
+              <th>END TIME</th>
+               
+            </tr>
+            </thead>
+            <tbody>
+              {% for winner in winners %}
+            <tr>
+              <td style="vertical-align: middle;">
+                
+                <img src ="{{winner.bid.product.image.url}}" class="img-thumbnail img-responsive" style="width: 200px; height: auto;max-width: 100%;">
+                
+                
+              </td>
+              <td style="vertical-align: middle;">
+                <span class="">
+                  <p class="text-black">{{winner.bid.product.name}}</p>
+                  
+                  <div class="">{{winner.bid.product.description}}</div>
+                
+
+              </span>
+              </td>
+              <td style="text-align: center;vertical-align: middle;">
+               
+                {{winner.user.get_shortname}}
+               
+              </td>
+              <td style="text-align: center;vertical-align: middle;">
+               
+                <strong class="post-modern-link text-bolder orange">KES {{winner.bid.product.price|intcomma}}</strong>
+                
+              </td>
+              <td style="text-align: center;vertical-align: middle;">
+               
+                <strong style="color:#28a745">KES {{winner.winning_value|intcomma}}</strong>
+                
+              </td>
+              <td style="text-align: center;vertical-align: middle;">
+               
+                {{winner.created_at}}
+                
+              </td>
+
+
+            </tr>
+            {% endfor %}
+
+            </tbody>
+          </table>
+          <div class="text-center" style="margin-top: 3%;">
+        
+            <h2><span style="color: #6c757d!important;;">You can be a winner too.</span></h2>
+          
+          
+            <a href="#current_auction" >
+            <button class="button button-icon button-icon-right" type="button" style="background-color: #F29100;border-color:#F29100;color: white; margin-top: 3%;"><span class="icon novi-icon"></span>Start Bidding Now</button>
+          </a>
+          </div> -->
+  </div>
+
+</section>
+
+
+{% endblock %}
+
+</div>
+{% block extra_scripts %}
+<script src="{% static "dist/js/bid.js" %}"></script>
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@9.15.2/dist/sweetalert2.all.min.js"></script>
+{% endblock %}

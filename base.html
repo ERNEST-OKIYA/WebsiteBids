@@ -1,0 +1,182 @@
+{% load staticfiles %}
+{% load humanize %}
+<!DOCTYPE html>
+
+<html class="wide wow-animation" lang="en">
+
+<head>
+  <!-- Global site tag (gtag.js) - Google Analytics -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-TFHPK8C0GY"></script>
+  <!-- Global site tag (gtag.js) - Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-GFMR415YZR"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-GFMR415YZR');
+</script>
+  {% block styles %}
+
+  <title>Buy Phones, Laptops,Cars and many more products for only KES 20 at instabids.co.ke </title>
+  <meta charset="utf-8">
+
+  <meta name="viewport" content="width=device-width, height=device-height, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <!-- <script src="{% static "js/JNM.js" %}"></script> -->
+  <link rel="icon" href="{% static "images/favicon.ico" %}" type="image/x-icon">
+  <!-- <link href="https://fonts.googleapis.com/css2?family=Ubuntu:wght@300;400&display=swap" rel="stylesheet"> -->
+  <link
+    href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,300;0,400;0,700;0,900;1,400;1,700&amp;display=swap"
+    rel="stylesheet">
+
+  <link rel="stylesheet" href="{% static "dist/css/bootstrap.css" %}">
+  <link rel="stylesheet" href="{% static "dist/css/fonts.css" %}">
+  <link rel="stylesheet" href="{% static "dist/css/base.034af34b.css" %}">
+  <link rel="stylesheet" href="{% static "dist/css/style.css" %}">
+
+
+  <link href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet"
+    integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
+  
+  
+
+  <style>
+    .ie-panel {
+      display: none;
+      background: #212121;
+      padding: 10px 0;
+      box-shadow: 3px 3px 5px 0 rgba(0, 0, 0, .3);
+      clear: both;
+      text-align: center;
+      position: relative;
+      z-index: 1;
+    }
+
+    html.ie-10 .ie-panel,
+    html.lt-ie-10 .ie-panel {
+      display: block;
+    }
+    .orange {
+      color: #F29100
+    }
+
+    .insta-red {
+      color: #f44336;
+    }
+
+    .insta-black {
+      color: #292a2d;
+    }
+
+    .facebook-blue {
+      color: #3b5998;
+    }
+  </style>
+  
+  {% endblock %}
+  {% block extra_style %}
+
+  {% endblock %}
+</head>
+{% block body %}
+
+<body>
+
+
+  {% block page %}
+  <div class="page">
+    {% block header %}
+    <header>
+      <div class="container">
+        <nav>
+          <div class="nav-wrapper">
+            <a class="brand-logo" href="/">
+              <img class="logo" src="{% static "images/logo.png" %}"></a>
+            <a class="menu_icon" href="#mobile-menu">
+              <i class="fa fa-bars" aria-hidden="true"></i>
+            </a>
+            <ul class="right hide-on-med-and-down" id="nav-mobile">
+              <li><a href="/">Home</a></li>
+              <li><a href="/how-it-works/">How It Works</a></li>
+              <li><a href="finished-auctions">Completed Auctions</a></li>
+              <li><a href="/faqs/">FAQs</a></li>
+              <li><a href="/terms/">T&Cs</a></li>
+              <li><a href="">Contact</a></li>
+
+            </ul>
+          </div>
+        </nav>
+      </div>
+    </header>
+    {% endblock %}
+
+    {% block content %}
+
+
+
+    
+    {% endblock %}
+
+    <div class="preloader">
+      <div class="ie-panel"><a href="https://windows.microsoft.com/en-US/internet-explorer/"><img
+            src="static/images/ie8-panel/warning_bar_0000_us.jpg" height="42" width="820"
+            alt="You are using an outdated browser. For a faster, safer browsing experience, upgrade for free today."></a>
+      </div>
+      <div class="preloader-body">
+        <div class="cssload-container">
+          <div class="cssload-speeding-wheel"></div>
+        </div>
+      </div>
+    </div>
+
+    {% block footer %}
+    <footer class="footer novi-bg novi-bg-img">
+
+
+      <div class="footer-panel">
+        <div class="container text-center">
+
+          <p class="rights"><a href="#">Instabids is regulated by the auctioneers board of Kenya under license number
+              005951.
+            </a>
+          </p>
+
+          <p class="rights">
+            <span>&copy;&nbsp; </span><span class="copyright-year"></span><span>&nbsp;</span><span>Instabids Auctions.
+              All rights Reserved</span><span>.&nbsp;</span>
+
+          </p>
+          <p class="rights">
+            Call us on <a href="tel:+254740999333">+254 740 999 333</a>
+          </p>
+          
+        </div>
+      </div>
+    </footer>
+    {% endblock %}
+  </div>
+  {% endblock %}
+  <div class="snackbars" id="form-output-global"></div>
+  {% block scripts %}
+  <script src="{% static "dist/js/core.min.js" %}"></script>
+  <script src="{% static "dist/js/script.js" %}"></script>
+
+  <!-- <link rel="stylesheet" href="https://cdn.linearicons.com/free/1.0.0/icon-font.min.css"> -->
+  <!-- <script src="{% static "dist/js/base.034af34b.js" %}"></script> -->
+
+
+  {% endblock %}
+
+  {% block extra_scripts %}
+
+  {% endblock %}
+
+  {% block page_scripts %}
+
+  {% endblock %}
+
+  {% endblock %}
+</body>
+
+</html>

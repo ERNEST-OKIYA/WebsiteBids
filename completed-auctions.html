@@ -1,0 +1,59 @@
+{% extends "website/base.html" %}
+{% load staticfiles %}
+{% load humanize %}
+  {%block content %}
+  <section class="section">
+  </section>
+  <section class="section section-lg bg-white-100"
+  style="margin-top:50px">
+    
+        <div class="header">
+            <div class="container">
+                <h2 style="color: #002698;">Completed <span class="insta-red">Auctions</span></h2>
+            </div>
+        </div>
+        <div class="auctions container content">
+            <ul class="list">
+                {% for winner in winners %}
+                    <li class="row">
+                        <div class="thumbnail"> <img src="{{winner.bid.product.image.url}}" alt="" srcset=""></div>
+                        <div class="description">
+                            <div class="title">
+                                <h3>{{winner.bid.product.name}}</h3><span class="description">{{winner.bid.product.description}}</span>
+                            </div>
+                            <table>
+                                <tr>
+                                    <td>Bidder</td>
+                                    <td>{{winner.user.get_shortname}}</td>
+                                </tr>
+                                <tr>
+                                    <td>RRP</td>
+                                    <td class="white">KES {{winner.bid.product.price|intcomma}}</td>
+                                </tr>
+                                <tr>
+                                    <td>Winning Bid</td>
+                                    <td class="white">KES {{winner.winning_value|intcomma}}</td>
+                                </tr>
+                                <tr>
+                                    <td>End Time</td>
+                                    <td class="white">{{winner.created_at|date:'N j, Y, G:i'}}</td>
+                                </tr>
+                            </table>
+                        </div>
+                    </li>
+                    {% endfor %}
+                    
+                
+            </ul>
+        </div>
+    
+        <div class="footer_lb">
+            <div class="container">
+                <div class="row">
+                    <!--<h3>You can be a winner too.<span>Win Big!</span></h3><a class="primary_btn" href="/">Start
+                    Bidding</a>-->
+                </div>
+            </div>
+        </div>
+ {% endblock %}
+ 
