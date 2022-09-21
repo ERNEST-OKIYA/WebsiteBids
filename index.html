@@ -9,11 +9,11 @@
 {% endblock %}
 
     {%block content %}
-        <div class="banner"><img src="{% static "images/background_pattern.28be9773.svg" %}" alt="Instabids">
+        <div class="banner"><img src="{% static "images/background_pattern.28be9773.svg" %}" alt="Bids Safi">
             <div class="container">
                 <h1>Bid Low,<span>Win Big!</span></h1>
                 <h2>Choose an Item you want to bid on.</h2>
-                <h2>Deposit a minimum of KES 20 via MPESA number 5265353 and specify your low unique bid on the product on offer. EG if a TV is on offer and your bid amount is 43, Enter TV 43.</h2>
+                <h2>Deposit a minimum of KES 20 via MPESA number 000000 and specify your low unique bid on the product on offer. EG if a TV is on offer and your bid amount is 43, Enter TV 43.</h2>
                 <h3>Once the Auction closes and you have the lowest unique bid, You buy the TV at 43 Shillings.</h3>
             </div>
         </div>
@@ -31,7 +31,7 @@
                         </div>
                         <div class="instructions">
                             <h4>BID VIA MPESA</h4>
-                            <p>Send just Ksh {{bid.ticket_price}} to PB <strong>5265353 </strong>with {{bid.code}} and your bid amount as the account name</p>
+                            <p>Send just Ksh {{bid.ticket_price}} to PB <strong>000000 </strong>with {{bid.code}} and your bid amount as the account name</p>
                             <p class="example">Example: {{bid.code}} 120 to bid KES 120</p>
                             <p>Or you can <strong>Play Online</strong></p>Grab your phone and get ready to pay KES {{bid.ticket_price}}.
                         </div>
@@ -222,7 +222,7 @@
                           {
                             var icon = 'error'
                             var html =`
-                            <p>You can bid KES ${data.bid_value} on this product by sending KES ${ticket_price} to paybill 5265353
+                            <p>You can bid KES ${data.bid_value} on this product by sending KES ${ticket_price} to paybill 000000
                             with Account No as ${data.bid_code} ${data.bid_value}.</p>
                             `
                           }
@@ -230,7 +230,7 @@
                             var icon = 'success'
                             var html = `
                             <p>If no prompt appears on your phone, please make sure you have atleast KES ${ticket_price} in your MPESA.</p>
-                            <p>You can also bid KES ${data.bid_value} on this product by sending KES ${ticket_price} to paybill 5265353
+                            <p>You can also bid KES ${data.bid_value} on this product by sending KES ${ticket_price} to paybill 000000
                             with Account No as ${data.bid_code} ${data.bid_value}.</p>
                             `
                           }
